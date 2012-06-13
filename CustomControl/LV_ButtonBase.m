@@ -1,6 +1,5 @@
 //
 //  LV_ButtonBase.m
-//  xxxInputLib
 //
 //  Created by lv on 4/28/12.
 //  Copyright (c) 2012 xxx. All rights reserved.
