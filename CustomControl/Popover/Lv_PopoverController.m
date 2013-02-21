@@ -12,6 +12,11 @@
 #define kPopoverPortRect CGRectMake(0, 0, kKeyBoardPortraitWidth, 180)
 #define kPopoverLandRect CGRectMake(0, 0, kKeyBoardLandscapeWidth, 140)
 
+
+
+
+
+
 @interface Lv_PopoverController()
 @property (nonatomic, retain)UIViewController* viewController;
 - (void)addObserver;
