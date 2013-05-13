@@ -1,0 +1,33 @@
+git help
+
+参考:
+[1]https://help.github.com/
+[2]http://lugir.com/git-basic.html
+
+1.设置用户名于邮箱
+git config --global user.name "Your Name"  
+git config --global user.email chengfeilv@gmail.com  
+
+2.初始化 git 仓库
+mkdir project # 创建项目目录  
+cd project # 进入到项目目录  
+git init # 初始化 git 仓库。此命令会在当前目录新建一个 .git 目录，用于存储 git 仓库的相关信息  
+
+3.添加文件
+git add . # 将当前目录添加到 git 仓库中， 使用 git add -A 则是添加所有改动的文档  
+
+4.提交
+git commit -m "Initial commit"  
+
+5.设置仓库（一次就可以）
+git remote add origin git@github.com:lugir/repo.git # 设置仓库  
+
+6.提交到远程仓库
+git push仓库
+
+7.更新
+git pull  
+
+other 
+1.查看状态
+git status
