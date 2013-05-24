@@ -58,6 +58,9 @@
 
 - (UIImage *)activityImage       // default returns nil. subclass must override and must return non-nil value
 {
+	/*!!!!
+	The alpha channel of the image is used as a mask to generate the final image that is presented to the user. Any color data in the image itself is ignored. Opaque pixels have a gradient applied to them and this gradient is then laid on top of a standard background. Thus, a completely opaque image would yield a gradient filled rectangle. For iPhone and iPod touch, images should be no larger than 43 by 43 points (which equates to 86 by 86 pixels for devices with Retina displays.) For iPad, images should be no larger than 55 x 55 points (which equates to 110 by 110 pixels for iPads with Retina displays.)
+	*/
 	return activityImage_;
 }
 
