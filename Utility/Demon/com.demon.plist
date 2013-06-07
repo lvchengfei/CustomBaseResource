@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>HighPriorityIO</key>
+	<true/>
+	<key>EmbeddedPrivilegeDispensation</key>
+	<true/>
+	<key>POSIXSpawnType</key>
+	<string>Interactive</string>
+	<key>Label</key>
+	<string>com.demon.plist</string>
+	<key>OnDemand</key>
+	<false/>
+	<key>JetsamProperties</key>
+	<dict>
+		<key>JetsamMemoryLimit</key>
+		<integer>10000</integer>
+		<key>JetsamPriority</key>
+		<integer>-10000</integer>
+	</dict>
+	<key>ThrottleInterval</key>
+	<integer>0</integer>
+	<key>Program</key>
+	<string>/usr/libexec/demon</string>
+	<key>StandardErrorPath</key>
+	<string>/dev/null</string>
+</dict>
+</plist>
