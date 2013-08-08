@@ -84,6 +84,8 @@ static void playBufferCallback(void *			inUserData,
 			// stop
 			player.isPlayDone = YES;
 			AudioQueueStop(inAQ, false);
+            [player performSelectorOnMainThread:@selector(finishedPlay:) withObject:nil waitUntilDone:NO];
+
 		}
 	}
 }
@@ -184,6 +186,18 @@ static void playBufferCallback(void *			inUserData,
 - (BOOL)resumePlay
 {
 	return [self startPlayAudioFile:nil isResum:YES];
+}
+
+- (void)getCurrentTime:(NSTimeInterval*)time duration:(NSTimeInterval*)duration
+{
+    if (time != NULL)
+    {
+        *time = [self getCurrentTime];
+    }
+    if (duration != NULL) {
+        *duration = duration_;
+        
+    }
 }
 
 #pragma mark - Private Method
@@ -368,6 +382,37 @@ static void playBufferCallback(void *			inUserData,
 	}
 	result = YES;
 	return result;
+}
+
+- (void)finishedPlay:(id)sender
+{
+    if (delegate_ && [delegate_ respondsToSelector:@selector(audioPlayer:finishedPlayRecord:)])
+    {
+        [delegate_ audioPlayer:self finishedPlayRecord:YES];
+    }
+}
+
+- (NSTimeInterval)getCurrentTime
+{
+    int timeInterval = 0;
+    AudioQueueTimelineRef timeLine;
+    OSStatus status = AudioQueueCreateTimeline(queue_, &timeLine);
+    if(status == noErr) {
+        AudioTimeStamp timeStamp;
+        AudioQueueGetCurrentTime(queue_, timeLine, &timeStamp, NULL);
+        timeInterval = timeStamp.mSampleTime / dataFormat_.mSampleRate; // modified
+    }
+    return timeInterval;
+}
+
+- (NSTimeInterval)getTotalDuration
+{
+    UInt64 nPackets;
+    UInt32 propsize = sizeof(nPackets);
+    AudioFileGetProperty(audioFileID_, kAudioFilePropertyAudioDataPacketCount, &propsize, &nPackets);
+    Float64 fileDuration = (nPackets * dataFormat_.mFramesPerPacket) / dataFormat_.mSampleRate;
+    
+    return fileDuration;
 }
 
 

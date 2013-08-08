@@ -45,4 +45,5 @@
 - (BOOL)stopPlay;
 - (BOOL)pausePlay;
 - (BOOL)resumePlay;
+- (void)getCurrentTime:(NSTimeInterval*)time duration:(NSTimeInterval*)duration;
 @end
